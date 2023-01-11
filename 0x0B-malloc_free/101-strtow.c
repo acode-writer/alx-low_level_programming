@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "main.h"
 /**
  * print_tab - Prints an array of string
  * @tab: The array to print
