@@ -1,52 +1,51 @@
 #include <stdio.h>
 #include <stdlib.h>
+int _strlen(char *ch);
 
 /**
- * _strlen - get length
- * @c: string
- * Return: returns length
+ * argstostr - concatenate arguments.
+ * @ac: arg counter.
+ * @av: arg vector.
+ * Return: pointer p.
  */
-
-int _strlen(char *c)
+char *argstostr(int ac, char **av)
 {
-	int len;
-
-	for (len = 0; c[len] != '\0'; len++)
-		;
-
-	return (len);
+int i, a = 0, k = 0;
+int j;
+char *p;
+if (ac == 0 || av == NULL)
+return (0);
+for (i = 0; i < ac; i++)
+{
+a += _strlen(av[i]);
+}
+p = malloc(a + 1 + ac);
+if (p == NULL)
+return (0);
+for (i = 0; i < ac; i++)
+{
+for (j = 0; j < (_strlen(av[i])); j++)
+{
+p[k] = av[i][j];
+k++;
+}
+p[k] = '\n';
+k++;
+}
+p[k] = '\0';
+return (p);
 }
 
 /**
- * argstostr - concat str
- * @ac: number of args
- * @av: args
- * Return: returns a pointer to the two strings concatenated, or NULL if fails
+ * _strlen - counts number of chars.
+ * @ch: string.
+ * Return: pointer i.
  */
 
-char *argstostr(int ac, char **av)
+int _strlen(char *ch)
 {
-	char *ptr;
-	int x, y, len = 0, c;
-
-	if (ac == 0 || av == NULL)
-		return (NULL);
-
-	for (x = 0; x < ac; x++)
-		len += _strlen(av[x]);
-
-	ptr = malloc((len + ac + 1) * sizeof(char));
-
-	if (!ptr)
-		return (NULL);
-
-	for (x = 0; x < ac; x++)
-	{
-		for (y = 0; av[x][y] != '\0'; y++, c++)
-			ptr[c] = av[x][y];
-		ptr[c] = '\n';
-		c++;
-	}
-	ptr[c] = '\0';
-	return (ptr);
+int i = 0;
+while (ch[i])
+i++;
+return (i);
 }
